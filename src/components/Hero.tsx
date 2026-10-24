@@ -1,46 +1,47 @@
-import { hero, stats } from "@/content/landing";
+import { hero } from "@/content/landing";
+import { Mark } from "./Mark";
+import { Eyebrow } from "./Section";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 -top-40 -z-10 mx-auto h-[480px] max-w-3xl rounded-full bg-gradient-to-tr from-indigo-500/30 via-sky-400/20 to-fuchsia-500/30 blur-3xl"
-      />
-      <div className="mx-auto max-w-4xl px-4 pt-24 pb-16 text-center sm:px-6 sm:pt-32">
-        <span className="inline-flex items-center rounded-full border border-black/10 px-3 py-1 text-xs font-medium text-foreground/70 dark:border-white/15">
-          {hero.badge}
-        </span>
-        <h1 className="mt-6 text-4xl font-bold tracking-tight text-balance sm:text-6xl">
-          {hero.title}
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-pretty text-foreground/70">
-          {hero.subtitle}
-        </p>
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a
-            href={hero.primaryCta.href}
-            className="w-full rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-500 sm:w-auto"
-          >
-            {hero.primaryCta.label}
-          </a>
-          <a
-            href={hero.secondaryCta.href}
-            className="w-full rounded-full border border-black/10 px-6 py-3 text-sm font-semibold transition-colors hover:bg-black/5 sm:w-auto dark:border-white/15 dark:hover:bg-white/5"
-          >
-            {hero.secondaryCta.label}
-          </a>
+    <section className="bg-cream">
+      <div className="mx-auto grid max-w-5xl items-center gap-12 px-4 py-20 sm:px-6 sm:py-28 md:grid-cols-[1fr_auto]">
+        <div>
+          <Eyebrow>{hero.eyebrow}</Eyebrow>
+          <h1 className="mt-5 max-w-2xl font-display text-5xl leading-[1.02] font-extrabold tracking-tight text-balance sm:text-7xl">
+            {hero.title}
+          </h1>
+          <p className="mt-7 max-w-md text-lg leading-relaxed text-pretty text-muted">
+            {hero.subtitle}
+          </p>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={hero.primaryCta.href}
+              className="rounded-lg bg-accent px-6 py-3.5 text-center font-semibold text-ink transition-colors hover:bg-accent-hover"
+            >
+              {hero.primaryCta.label}
+            </a>
+            <a
+              href={hero.secondaryCta.href}
+              className="rounded-lg border-2 border-ink px-6 py-3 text-center font-semibold transition-colors hover:bg-ink hover:text-cream"
+            >
+              {hero.secondaryCta.label}
+            </a>
+          </div>
         </div>
-        <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:grid-cols-3">
-          {stats.map((stat) => (
-            <div key={stat.label}>
-              <dt className="text-sm text-foreground/60">{stat.label}</dt>
-              <dd className="mt-1 text-3xl font-semibold tracking-tight">
-                {stat.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <figure className="hidden md:block">
+          <Mark className="w-56 text-ink lg:w-64" />
+          <figcaption className="mt-8 flex justify-center gap-6 font-mono text-[11px] tracking-[0.15em] text-muted uppercase">
+            <span className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full border border-current" aria-hidden />
+              {hero.legend.ring}
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="h-2 w-2 bg-current" aria-hidden />
+              {hero.legend.square}
+            </span>
+          </figcaption>
+        </figure>
       </div>
     </section>
   );

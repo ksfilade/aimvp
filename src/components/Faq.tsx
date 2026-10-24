@@ -1,21 +1,19 @@
 import { faqs } from "@/content/landing";
-import { Section } from "./Section";
+import { Section, SectionTitle } from "./Section";
 
 export function Faq() {
   return (
-    <Section id="faq" eyebrow="FAQ" title="Frequently asked questions">
-      <div className="mx-auto max-w-3xl divide-y divide-black/10 dark:divide-white/10">
-        {faqs.map((faq) => (
-          <details key={faq.question} className="group py-5">
-            <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-              {faq.question}
-              <span className="ml-4 text-foreground/50 transition-transform group-open:rotate-45">
-                +
-              </span>
-            </summary>
-            <p className="mt-3 text-foreground/70">{faq.answer}</p>
-          </details>
-        ))}
+    <Section id="faq">
+      <div className="grid gap-10 md:grid-cols-[13rem_1fr] md:gap-16">
+        <SectionTitle>Questions</SectionTitle>
+        <dl className="divide-y divide-line border-y border-line">
+          {faqs.map((faq) => (
+            <div key={faq.question} className="py-5">
+              <dt className="font-semibold">{faq.question}</dt>
+              <dd className="mt-2 leading-relaxed text-muted">{faq.answer}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </Section>
   );

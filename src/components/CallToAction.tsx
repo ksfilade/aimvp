@@ -1,49 +1,29 @@
-"use client";
-
-import { useState, type FormEvent } from "react";
-import { cta } from "@/content/landing";
+import { cta, site } from "@/content/landing";
 
 export function CallToAction() {
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    // TODO: send the email to your waitlist provider or an API route.
-    setSubmitted(true);
-  }
-
   return (
-    <section id="cta" className="scroll-mt-16 px-4 py-20 sm:px-6 sm:py-28">
-      <div className="mx-auto max-w-4xl rounded-3xl bg-indigo-600 px-6 py-16 text-center text-white sm:px-16">
-        <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-          {cta.title}
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-indigo-100">{cta.subtitle}</p>
-        {submitted ? (
-          <p className="mt-10 font-medium">Thanks! You are on the list.</p>
-        ) : (
-          <form
-            onSubmit={handleSubmit}
-            className="mx-auto mt-10 flex max-w-md flex-col gap-3 sm:flex-row"
+    <section id="contact" className="scroll-mt-16 bg-ink text-cream">
+      <div className="mx-auto grid max-w-5xl gap-10 px-4 py-20 sm:px-6 sm:py-24 md:grid-cols-[1fr_auto] md:items-center">
+        <div>
+          <h2 className="font-display text-4xl font-extrabold tracking-tight text-balance sm:text-5xl">
+            {cta.title}
+          </h2>
+          <p className="mt-4 max-w-md leading-relaxed text-cream/70">{cta.subtitle}</p>
+        </div>
+        <div>
+          <a
+            href={cta.button.href}
+            className="inline-block rounded-lg bg-accent px-6 py-3.5 font-semibold text-ink transition-colors hover:bg-accent-hover"
           >
-            <label htmlFor="email" className="sr-only">
-              Email address
-            </label>
-            <input
-              id="email"
-              type="email"
-              required
-              placeholder={cta.placeholder}
-              className="min-w-0 flex-1 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-white placeholder:text-indigo-200 focus:ring-2 focus:ring-white focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-indigo-600 transition-colors hover:bg-indigo-50"
-            >
-              {cta.button}
-            </button>
-          </form>
-        )}
+            {cta.button.label}
+          </a>
+          <p className="mt-4 text-sm text-cream/70">
+            or email{" "}
+            <a href={`mailto:${site.email}`} className="hover:text-cream">
+              {site.email}
+            </a>
+          </p>
+        </div>
       </div>
     </section>
   );
